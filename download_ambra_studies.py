@@ -19,16 +19,14 @@ url = 'https://access.dicomgrid.com/api/v3/'
 username = '<ambra-user-email>'           # Ambra account user name
 password = '<ambra-user-password>'        # Ambra account password
 
-api = Api.with_creds(url, username, password)
-
-# *************** define the target project *************** 
-
 # each 'project'/bucket on Ambra will have a corresponding phi_namespace id
 #   not to be confused with the storage_namespace id
 #   the phi_namespace can be found within the Ambra URL for a study within the target project
 phi_namespace = '<phi-namespace-id>' # for the given bucket on Ambra
 
 # *************** download all studies in a given project *************** 
+
+api = Api.with_creds(url, username, password)
 
 # find all studies
 query_object = api \

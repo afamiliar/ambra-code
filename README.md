@@ -1,5 +1,5 @@
 # Ambra code
-The included scripts are intended for downloading imaging (radiology) studies from the Ambra Health platform, utilizing the Ambra SDK which calls the Ambra API.
+The included scripts are intended for downloading imaging (radiology) studies from the Ambra Health platform, utilizing the Ambra SDK which calls the Ambra API. Requires the user to have download permissions for the bucket.
 
 ### Scripts
 
@@ -35,4 +35,5 @@ access_num
 ### Other resources
 
 Ambra-SDK documentation: https://dicomgrid.github.io/sdk-python/index.html
+
 Ambra API documentation: https://uat.dicomgrid.com/api/v3/api.html

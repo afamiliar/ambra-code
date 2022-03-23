@@ -13,18 +13,18 @@ import shutil
 url = 'https://access.dicomgrid.com/api/v3/'
 username = '<ambra-user-email>'
 password = '<ambra-user-password>'
+access_num = '<an-accession-number>'
 
 api = Api.with_creds(url, username, password)
 
-# find the study
-access_num = '<an-accession-number>'
+# ********** find the study ********** 
 study = api \
     .Study \
     .list() \
     .filter_by(Study.accession_number==access_num) \
     .first()
 
-# download the study
+# ********** download the study ********** 
 r = api.Storage.Study.download(engine_fqdn=study.engine_fqdn, \
                            namespace=study.storage_namespace, \
                            study_uid=study.study_uid, \
