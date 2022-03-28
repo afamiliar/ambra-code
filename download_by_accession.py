@@ -11,9 +11,26 @@ from ambra_sdk.models import Study
 import shutil
 
 url = 'https://access.dicomgrid.com/api/v3/'
-username = '<ambra-user-email>'
-password = '<ambra-user-password>'
-access_num = '<an-accession-number>'
+
+username = os.getenv("AMBRA_USERNAME")
+if username is None:
+    raise ImproperlyConfigured(
+        "You must supply a valid Ambra username in AMBRA_USERNAME."
+    )
+
+password = os.getenv("AMBRA_PASSWORD")
+if password is None:
+    raise ImproperlyConfigured(
+        "You must supply a valid Ambra password in AMBRA_PASSWORD."
+    )
+
+access_num = os.getenv("STUDY_ACCESSION_NUMBER")
+if access_num is None:
+    raise ImproperlyConfigured(
+        "You must supply a valid accession number in STUDY_ACCESSION_NUMBER."
+    )
+
+
 
 api = Api.with_creds(url, username, password)
 
@@ -21,7 +38,7 @@ api = Api.with_creds(url, username, password)
 study = api \
     .Study \
     .list() \
-    .filter_by(Study.accession_number==access_num) \
+    .filter_by(Study.accession_number == access_num) \
     .first()
 
 # ********** download the study ********** 

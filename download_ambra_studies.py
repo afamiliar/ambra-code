@@ -16,13 +16,27 @@ import shutil
 import os
 
 url = 'https://access.dicomgrid.com/api/v3/'
-username = '<ambra-user-email>'           # Ambra account user name
-password = '<ambra-user-password>'        # Ambra account password
+
+username = os.getenv("AMBRA_USERNAME")
+if username is None:
+    raise ImproperlyConfigured(
+        "You must supply a valid Ambra username in AMBRA_USERNAME."
+    )
+
+password = os.getenv("AMBRA_PASSWORD")
+if password is None:
+    raise ImproperlyConfigured(
+        "You must supply a valid Ambra password in AMBRA_PASSWORD."
+    )
 
 # each 'project'/bucket on Ambra will have a corresponding phi_namespace id
 #   not to be confused with the storage_namespace id
 #   the phi_namespace can be found within the Ambra URL for a study within the target project
-phi_namespace = '<phi-namespace-id>' # for the given bucket on Ambra
+phi_namespace = os.getenv("AMBRA_PHI_NAMESPACE")
+if phi_namespace is None:
+    raise ImproperlyConfigured(
+        "You must supply a valid Ambra PHI-namespace in AMBRA_PHI_NAMESPACE."
+    )
 
 # *************** download all studies in a given project *************** 
 
