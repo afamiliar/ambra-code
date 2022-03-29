@@ -1,5 +1,5 @@
 # Ambra code
-The included tools are intended for interfacing with the Ambra Health platform for imaging (radiology) studies, utilizing the Ambra SDK which calls the Ambra API.
+The included tools are intended for interfacing with the Ambra Health platform for imaging (radiology) studies, utilizing the Ambra SDK which calls the Ambra API. Requires the user to have the appropriate permissions on Ambra to perform the given actions.
 
 ### Code
 
