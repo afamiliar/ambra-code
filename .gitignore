@@ -1,4 +1,10 @@
+# macOS
+.DS_Store
 
-.env
+# Develoment Environment
 .idea
+.venv
+.env
+
+# Python
 __pycache__
