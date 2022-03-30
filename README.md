@@ -42,6 +42,7 @@ ambra_phi_namespace
 ### Example usage
 ```
 python3 ambra_download.py --download_type mrn --patient_mrn 012345
+python3 ambra_download.py --download_type all --ambra_phi_namespace '01234a56b-1234-0aaa-ab01-0ab12c34d567'
 ```
 
 ### Other resources
