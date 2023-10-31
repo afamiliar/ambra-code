@@ -4,19 +4,13 @@ from ambra_sdk.api import Api
 from sqlalchemy import create_engine, URL
 
 
+#### Database and Table Credentials ######
 
-db_url = URL.create(
- 
-
-)
-
+db_url = os.getenv("D3B_WAREHOUSE_DB_URL")
 db = create_engine(db_url)
 table = "ambra_mri_export_de-identified"
 
-#site = 'D3b CBTN Orlando Health Arnold Palmer Hospital - Deidentified'
-#phi_namespace='31216709-9f43-488f-83c0-a5184b91a061'
-#phi_namespace='bfacdf34-0ada-4cbc-a5a3-8b808e5d4418'
-
+######### Ambra-SDK ###########
 
 url = 'https://choparcus.ambrahealth.com/api/v3/'
 username= # expects these environment variables
@@ -26,9 +20,6 @@ api = Api.with_creds(url, username, password)
 
 # **************** FIND ALL ACCESSION NUMBERS *************
 # find all studies
-
-
-
 query_object = api \
               .Study \
               .list() \
@@ -61,13 +52,10 @@ columns = [
         ]
 
 out_df = pd.DataFrame(study_list,columns=columns)
-
-# ****** add in age-in-days-at-imaging ****************
-
 out_df['uploaded_date'] = pd.to_datetime(out_df['uploaded_date']).dt.strftime('%Y%m%d')
 out_df['uploaded_date'] = pd.to_datetime(out_df['uploaded_date'])
 
-
+############ Load data from Ambra to Database table ############
 
 if out_df.all:
     rex = re.compile(r"(?<!_)(?=[A-Z])")
